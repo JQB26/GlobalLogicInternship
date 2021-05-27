@@ -1,4 +1,4 @@
-package Word;
+package com.szczepanek.FrequencyCalc.Word;
 
 import java.util.HashSet;
 
@@ -20,6 +20,7 @@ public class Word {
         number_of_included_letters = 0;
     }
 
+
     public void addIncludedLetter(Character letter){
         included_letters.add(letter);
     }
@@ -34,6 +35,11 @@ public class Word {
 
     public void incrementNumberOfIncludedLetters(int number_of_included_letters){
         this.number_of_included_letters += number_of_included_letters;
+    }
+
+    // returns true if no included letters are in the word
+    public boolean isEmpty(){
+        return number_of_included_letters == 0;
     }
 
 
