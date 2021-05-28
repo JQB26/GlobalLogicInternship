@@ -8,7 +8,6 @@ import java.util.HashSet;
 public class SingleResult extends Word {
     private double frequency;
 
-
     public SingleResult(Word word){
         super(word.getIncluded_letters(), word.getWord_length(), word.getNumber_of_included_letters());
     }
@@ -18,8 +17,8 @@ public class SingleResult extends Word {
     }
 
     // checks if included letters and word length are the same
-    public boolean BelongsToTheGroup(HashSet<Character> included_letters, int word_length){
-        return included_letters.equals(this.included_letters) && word_length == this.word_length;
+    public boolean BelongsToTheGroup(Word word){
+        return word.getIncluded_letters().equals(this.included_letters) && word.getWord_length() == this.word_length;
     }
 
     // calculates frequency and rounds result to two decimal places

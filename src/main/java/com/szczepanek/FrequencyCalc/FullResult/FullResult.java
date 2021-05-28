@@ -27,11 +27,11 @@ public class FullResult {
     }
 
     // adds a word to the results, increments necessary variables
-    public void addResult(Word word){
+    public void addResult(Word word) {
         this.total_key_letters_appearance += word.getNumber_of_included_letters();
         this.total_valid_letters += word.getWord_length();
-        for(SingleResult singleResult: results){
-            if(singleResult.BelongsToTheGroup(word.getIncluded_letters(), word.getWord_length())){
+        for (SingleResult singleResult : results) {
+            if (singleResult.BelongsToTheGroup(word)) {
                 singleResult.incrementNumberOfIncludedLetters(word.getNumber_of_included_letters());
                 return;
             }
@@ -40,24 +40,23 @@ public class FullResult {
     }
 
     // calculates frequency for each result and total_frequency
-    public void CalculateFrequency(){
-        for(SingleResult singleResult: results){
+    public void CalculateFrequency() {
+        for (SingleResult singleResult : results) {
             singleResult.CalculateFrequency(total_key_letters_appearance);
         }
-        total_frequency = DoubleRounder.round((double) total_key_letters_appearance/total_valid_letters, 2);
+        total_frequency = DoubleRounder.round((double) total_key_letters_appearance / total_valid_letters, 2);
     }
 
     // sorts results by frequency and word length
-    public void sort(){
+    public void sort() {
         results.sort(Comparator.comparing(SingleResult::getFrequency).thenComparing(SingleResult::getWord_length));
     }
 
-    public void print(){
-        if(results.isEmpty()){
+    public void print() {
+        if (results.isEmpty()) {
             System.out.println("No results");
-        }
-        else{
-            for(SingleResult singleResult: results){
+        } else {
+            for (SingleResult singleResult : results) {
                 singleResult.print(total_key_letters_appearance);
             }
             System.out.println("TOTAL Frequency: " + total_frequency + " (" + total_key_letters_appearance +

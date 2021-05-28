@@ -14,7 +14,7 @@ public class Input {
     public Input() {
     }
 
-    public void readFromCommandLine(){
+    public void readFromCommandLine() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Type the key");
         key = scanner.nextLine();
