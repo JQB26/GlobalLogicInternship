@@ -3,7 +3,6 @@ package com.szczepanek.FrequencyCalc.FullResult.SingleResult;
 import com.szczepanek.FrequencyCalc.Word.Word;
 import org.decimal4j.util.DoubleRounder;
 
-import java.util.HashSet;
 
 public class SingleResult extends Word {
     private double frequency;

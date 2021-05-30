@@ -7,7 +7,6 @@ public class Word {
     protected int word_length;
     protected int number_of_included_letters;
 
-
     public Word(HashSet<Character> included_letters, int word_length, int number_of_included_letters) {
         this.included_letters = included_letters;
         this.word_length = word_length;
@@ -19,7 +18,6 @@ public class Word {
         word_length = 0;
         number_of_included_letters = 0;
     }
-
 
     public void addIncludedLetter(Character letter){
         included_letters.add(letter);
