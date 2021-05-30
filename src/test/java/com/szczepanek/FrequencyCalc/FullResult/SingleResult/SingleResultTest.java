@@ -33,7 +33,7 @@ class SingleResultTest {
 
     @Test
     void calculateFrequency() {
-        SingleResult result = new SingleResult(new Word(new HashSet<Character>(), 0, 5));
+        SingleResult result = new SingleResult(new Word(new HashSet<>(), 0, 5));
         double expected1 = 0.71;
         double expected2 = 0.42;
 

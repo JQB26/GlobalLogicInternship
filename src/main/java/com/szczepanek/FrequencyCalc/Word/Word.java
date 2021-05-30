@@ -19,24 +19,24 @@ public class Word {
         number_of_included_letters = 0;
     }
 
-    public void addIncludedLetter(Character letter){
+    public void addIncludedLetter(Character letter) {
         included_letters.add(letter);
     }
 
-    public void incrementWordLength(){
+    public void incrementWordLength() {
         word_length++;
     }
 
-    public void incrementNumberOfIncludedLetters(){
+    public void incrementNumberOfIncludedLetters() {
         number_of_included_letters++;
     }
 
-    public void incrementNumberOfIncludedLetters(int number_of_included_letters){
+    public void incrementNumberOfIncludedLetters(int number_of_included_letters) {
         this.number_of_included_letters += number_of_included_letters;
     }
 
     // returns true if no included letters are in the word
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return number_of_included_letters == 0;
     }
 

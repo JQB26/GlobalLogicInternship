@@ -17,16 +17,16 @@ public class FrequencyCalc {
     private final HashSet<Character> key;
     FullResult result;
 
-    private final String filePath;
+    private String filePath;
 
     public FrequencyCalc(Input input) {
         this.input = input;
         key = new HashSet<>();
         result = new FullResult();
 
-        Date date = new Date() ;
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss") ;
-        filePath = "src/main/resources/GeneratedData/" + dateFormat.format(date) + ".json";
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
+        filePath = "src/main/java/com/szczepanek/GeneratedData/" + dateFormat.format(date) + ".json";
     }
 
     public FrequencyCalc() {
@@ -34,44 +34,44 @@ public class FrequencyCalc {
         key = new HashSet<>();
         result = new FullResult();
 
-        Date date = new Date() ;
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss") ;
-        filePath = "src/main/resources/GeneratedData/" + dateFormat.format(date) + ".json";
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
+        filePath = "src/main/java/com/szczepanek/GeneratedData/" + dateFormat.format(date) + ".json";
     }
 
-    public void print(){
+    public void print() {
         result.print();
     }
 
     // main function in the application
-    public void Calculate(){
+    public void Calculate() {
         SetStringsToLowerCase();
         InterpretTheKey();
 
         Word word = new Word();
         // iterates through every char in the input
-        for(int i = 0; i < input.getInput().length(); i++){
+        for (int i = 0; i < input.getInput().length(); i++) {
             char x = input.getInput().charAt(i);
             // checks if the char is a letter
-            if(x >= 97 && x <= 122){
+            if (x >= 97 && x <= 122) {
                 word.incrementWordLength();
                 // checks if letter is in the key
-                if(key.contains(x)){
+                if (key.contains(x)) {
                     word.addIncludedLetter(x);
                     word.incrementNumberOfIncludedLetters();
                 }
             }
             // if char is not a letter we "end" a word
-            else{
+            else {
                 // if the word should be included in the result we add it
-                if(!word.isEmpty()){
+                if (!word.isEmpty()) {
                     result.addResult(word);
                 }
                 word = new Word();
             }
         }
         //last word push
-        if(!word.isEmpty()){
+        if (!word.isEmpty()) {
             result.addResult(word);
         }
 
@@ -79,33 +79,39 @@ public class FrequencyCalc {
         result.sort();
     }
 
-    public void SaveToFile(){
-        try(FileWriter fr = new FileWriter(filePath)){
+    // saving result to the file (name of the file is the date)
+    public void SaveToFile() {
+        try (FileWriter fr = new FileWriter(filePath)) {
             Gson gson = new Gson();
             fr.write(gson.toJson(result));
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
     // change the Key from String to HashSet
-    private void InterpretTheKey(){
-        for(int i = 0; i < input.getKey().length(); i++){
+    private void InterpretTheKey() {
+        for (int i = 0; i < input.getKey().length(); i++) {
             key.add(input.getKey().charAt(i));
         }
     }
 
     // set both key and input to be lowerCase
-    private void SetStringsToLowerCase(){
+    private void SetStringsToLowerCase() {
         input.setKey(input.getKey().toLowerCase(Locale.ROOT));
         input.setInput(input.getInput().toLowerCase(Locale.ROOT));
     }
 
-    public void GetInputFromCommandLine(){
+    public void GetInputFromCommandLine() {
         input.readFromCommandLine();
     }
 
 
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
 }

@@ -63,4 +63,12 @@ public class FullResult {
                     "/" + total_valid_letters + ")");
         }
     }
+
+    public ArrayList<SingleResult> getResults() {
+        return results;
+    }
+
+    public double getTotal_frequency() {
+        return total_frequency;
+    }
 }
